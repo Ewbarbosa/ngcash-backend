@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    image: postgres:14.2-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: dbngcash
+    ports:
+      - 5432:5432
+
+  app:
+    build: .
+    command: yarn dev
+    ports:
+      - "3333:3333"
+    volumes:
+      - .:/usr/app
